@@ -1,0 +1,353 @@
+/* overlay */
+.modal_overlay{
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  min-width: 1480px;
+}
+.modal_overlay.active{
+  display: flex;
+}
+/* modal box */
+.modal_box{
+  position: relative;
+  width: 90%;
+  max-width: 420px;
+  background: #fff;
+  border-radius: 12px;
+  padding: 30px 20px;
+  box-sizing: border-box;
+}
+/* close button (top-right) */
+.modal_close{
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  border: 0;
+  background: transparent;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 4px;
+}
+/* content */
+.modal_content{
+  text-align: center;
+  line-height: 1.45;
+}
+.modal_content em{
+  font-weight: 700;
+}
+/* footer */
+.modal_footer{
+  margin-top: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+}
+/* confirm button */
+.btn_design{
+  min-width: 120px;
+  height: 35px;
+  border: 0;
+  border-radius: 6px;
+  background: #EEEEEE;
+  color: var(--dark);
+  font-size: 14px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.btn_design.active_btn{
+  background: #444444;
+  color: var(--white);
+}
+
+
+/* view page 모달 디자인 */
+/* login_modal */
+.login_modal .modal_box{
+  max-width: 500px;
+}
+.login_modal .login_page{
+  padding-top: 40px;
+  max-width: 420px;
+  padding-bottom: 10px;
+}
+
+/* vodClassmodal */
+.vod_modal{
+  max-width: 1100px;
+  padding: 30px 0 10px;
+  border-radius: 40px;
+  overflow: hidden;
+  background: #fff;
+}
+
+/* header */
+.vod_header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px 20px;
+}
+.vod_header .modal_close{
+  position: relative;
+  inset: 0;
+  width: 22px;
+}
+.vod_header .modal_close img{
+  width: 100%;
+}
+.vod_title{
+  font-size: 1.125em;
+  font-weight: 600;
+}
+
+/* body layout */
+.vod_body{
+  display: flex;
+  padding: 20px;
+  gap: 25px;
+}
+
+/* video */
+.vod_video{
+  max-width: 700px;
+  width: 100%;
+  height: 400px;
+  margin: auto;
+}
+.vod_player{
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* right panel */
+.vod_panel{
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* tabs */
+.vod_tabs{
+  display: flex;
+  gap: 25px;
+  padding-bottom: calc(var(--padding)*1.5);
+  font-size: 1.125em;
+}
+.vod_tabs .tab{
+  background: none;
+  border: none;
+  padding: 0 0 6px;
+  color: #aaa;
+  cursor: pointer;
+}
+.vod_tabs .tab.active{
+  color: #000;
+  font-weight: 600;
+  border-bottom: 2px solid #000;
+}
+
+/* list */
+.vod_list{
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  overflow-y: auto;
+}
+.vod_list li{
+  position: relative;
+  border-radius: 8px;
+  border: 1px solid var(--border1);
+}
+.vod_list li a{
+  padding: 20px 20px 25px;
+  display: flex;
+  justify-content: start;
+  align-items: stretch;
+  gap: 15px;
+}
+
+.vod_list li.active{
+  border-color: var(--border2);
+}
+.vod_list .idx{
+  min-width: 27px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.vod_list .txt{
+  line-height: 1.25em;
+  margin-bottom: calc(var(--padding)*1);
+}
+.vod_list .panel_bot{
+  font-size: 0.95em;
+  color: var(--grey3);
+}
+.vod_list .panel_bot .name::after{
+  content: '|';
+  color: var(--grey2);
+  font-weight: 300;
+  font-size: 0.85em;
+  padding: 0 8px;
+}
+.gauge{
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 8px;
+  width: 100%;
+  height: 6px;
+  background: #e5e5e5;
+  border-radius: 100px;
+  overflow: hidden;
+  width: 92%;
+}
+.gauge_bar{
+  display: block;
+  height: 100%;
+  background: var(--point_main);
+  border-radius: 999px;
+  transition: width 0.3s ease;
+}
+
+/* 공통 */
+.tab_panel{
+  display: none;
+  overflow-y: auto;
+  height: calc(400px - 45px);
+  flex-direction: column;
+  gap: 10px;
+  padding-right: 20px;
+  padding-bottom: var(--padding);
+}
+.tab_panel.active{
+  display: flex;
+}
+
+/* 강의 자료 */
+.vod_files{
+  padding-top: 15px;
+}
+.file_list{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.file_list li{
+  border: 1px solid var(--border1);
+  border-radius: 10px;
+  background: var(--white);
+  font-size: 0.95em;
+  transition: .25s;
+}
+.file_list li a{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 12px 20px;
+  line-height: 1em;
+}
+.download{
+  fill: #CFCFCF;
+  transition: .25s;
+}
+.file_list li:hover{
+  border-color: var(--border2);
+}
+.file_list li:hover .download{
+  fill: var(--border2);
+}
+
+/* 일괄 다운로드 */
+.all_download{
+  margin-top: 12px;
+  background: none;
+  border: none;
+  font-size: 13px;
+  color: var(--grey3);
+  cursor: pointer;
+  text-align: right;
+  width: 100%;
+  transition: .2s;
+}
+.all_download:hover{
+  color: var(--dark);
+  text-decoration: underline;
+}
+
+
+/* 강의 미리보기 */
+.class_preview_modal .modal_box{
+  max-width: 780px;
+}
+.class_preview_modal .vod_header{
+  padding-bottom: calc(var(--padding)*2);
+}
+
+/* 쿠폰 등록 모달 */
+/* coupon modal */
+.modal_title{
+  text-align: left;
+  font-weight: 700;
+  padding-bottom: calc(var(--padding)*1.5);
+}
+.coupon_form{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+.coupon_input{
+  width: 100%;
+  height: 40px;
+  padding: 0 12px;
+  border-radius: 10px;
+  border: 1px solid var(--border1);
+  font-size: 0.95em;
+}
+.coupon_input::placeholder{
+  color: var(--grey3);
+}
+.coupon_input.active{
+  border-color: var(--border2);
+}
+/* 버튼 기본 비활성 */
+.btn_coupon_submit{
+  height: 40px;
+  border-radius: 10px;
+  background: var(--grey1);
+  color: var(--dark);
+  cursor: not-allowed;
+}
+
+/* 활성 */
+.btn_coupon_submit.active{
+  background: var(--dark);
+  color: var(--white);
+  cursor: pointer;
+}
+
+.completion_modal .modal_box{
+  max-width: 1000px;
+  width: auto;
+}
+.completion_modal .modal_content{
+  width: 100%;
+}
+.completion_modal .modal_content img{
+  display: block;
+  max-width: 100%;
+}

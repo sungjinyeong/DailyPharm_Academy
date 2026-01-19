@@ -1,0 +1,366 @@
+.page_top_padding{
+  padding-top: 250px;
+}
+
+
+/* 전체 레이아웃 */
+.mypage_wrap {
+  display: flex;
+  gap: 32px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 0;
+}
+
+/* 사이드바 */
+.mypage_sidebar{
+  width: 260px;
+  flex-shrink: 0;
+}
+
+.mypage_profile_title{
+  font-size: 1.25em;
+  font-weight: 700;
+  padding-bottom: calc(var(--padding)*3);
+}
+.mypage_profile_info{
+  font-weight: 600;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding-bottom: calc(var(--padding)*2);
+}
+.mypage_profile_info li a{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
+  background: #F8F8F8;
+  border: 1px solid #EEEEEE;
+  border-radius: 12px;
+}
+.mypage_profile_info .pharm_start a{
+  background: #444444;
+  color: var(--white);
+  font-weight: 300;
+}
+
+/* 메뉴 */
+.mypage_menu_list ul{
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.mypage_menu_list ul li a{
+  display: block;
+  border-radius: 12px;
+  padding: 15px 30px;
+  color: var(--dark);
+}
+.mypage_menu_list ul li a:hover{
+  background: #EEEEEE;
+}
+.mypage_menu_list ul li.active a{
+  background: #F8F8F8;
+  font-weight: 600;
+}
+
+/* 콘텐츠 */
+.mwpage_wrap{
+  flex: 1;
+}
+.mwpage_wrap h3{
+  font-size: 1.125em;
+  font-weight: 600;
+  padding-bottom: calc(var(--padding)*1.5);
+}
+.mypage_course_list{
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  border: 1px solid var(--border1);
+  border-radius: 12px;
+  padding: 30px;
+}
+.mypage_course_item{
+  display: flex;
+  align-items: stretch;
+  gap: 20px;
+}
+.mypage_course_item + .mypage_course_item{
+  border-top: 1px solid var(--border1);
+  padding-top: 25px;
+}
+/* 썸네일 */
+.mypage_course_thumb{
+  position: relative;
+  width: 175px;
+  flex: 0 0 175px;
+  aspect-ratio: 1.4;
+  max-height: 125px;
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.mypage_course_thumb img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+/* 정보 */
+.rig_control{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 0 0 270px;
+}
+.mypage_course_progress{
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  gap: 10px;
+}
+.mypage_course_info{
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.mypage_course_category{
+  font-size: 0.875em;
+  color: var(--grey3);
+  padding-bottom: var(--padding);
+}
+.mypage_state{
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  font-size: 0.925em;
+  line-height: 1em;
+  color: var(--grey3);
+}
+.mypage_state li:first-child::after{
+  content: "|";
+  margin: 0 5px;
+  font-size: 0.9em;
+  font-weight: 300;
+  color: var(--grey2);
+}
+.mypage_course_title{
+  font-weight: 600;
+  line-height: 1.25em;
+}
+.mypage_course_type, .mypage_course_pay{
+  margin-top: auto;
+  padding-top: 8px;
+  font-size: 0.875em;
+}
+.mypage_course_type{
+  color: var(--dark);
+}
+.mypage_course_pay{
+  color: var(--grey3);
+}
+/* 진행률 */
+.mypage_progress_bar{
+  width: 185px;
+  height: 6px;
+  background: #eee;
+  border-radius: 3px;
+  overflow: hidden;
+}
+.mypage_progress_bar span{
+  display: block;
+  height: 100%;
+  background: var(--dark);
+}
+.mypage_progress_text{
+  font-size: 0.875em;
+  text-align: right;
+  color: var(--dark);
+}
+.mypage_course_action{
+  display: flex;
+  height: 100%;
+  justify-content: end;
+  align-items: end;
+  gap: 10px;
+}
+/* 버튼 */
+[class^="mypage_btn"]{
+  width: 130px;
+  height: 35px;
+  border-radius: 10px;
+  font-size: 0.875em;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: .25s;
+}
+.mypage_btn_issue, .mypage_btn_detail{
+  background: var(--white);
+  border: 1px solid var(--grey3);
+  color: var(--dark);
+}
+.mypage_btn_primary{
+  border: 0;
+  background: var(--grey3);
+  color: var(--white);
+}
+.mypage_btn_primary:hover{
+  background: var(--dark);
+}
+.mypage_btn_issue:hover{
+  background: var(--grey1);
+}
+.mypage_btn_receipt{
+  background: var(--white);
+  border: 1px solid var(--grey2);
+  color: var(--grey3);
+}
+.mypage_btn_receipt:hover{
+  background: var(--grey1);
+  color: #747474;
+}
+.mypage_btn_detail:hover{
+  border-color: var(--black);
+  color: var(--black);
+}
+
+/* 결제내역 first */
+.live_state{
+  display: flex;
+  justify-content: space-between;
+}
+.live_title{
+  font-weight: 600;
+  padding-bottom: var(--padding);
+}
+.live_period{
+  color: var(--grey3);
+  padding-bottom: calc(var(--padding)*4.5);
+}
+.live_price{
+  font-size: 0.875em;
+  color: var(--grey3);
+}
+
+/* history */
+.history{
+  border: 1px solid var(--border1);
+  border-radius: 14px;
+  padding: 30px 30px 50px 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 35px;
+}
+/* 상단 */
+.history_head{
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
+}
+.history_profile{
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+.profile_img{
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.profile_img img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.profile_info{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.profile_info .category{
+  font-size: 0.875em;
+  color: var(--grey3);
+}
+.profile_info .title{
+  font-weight: 600;
+  line-height: 1.3em;
+}
+
+/* 배지 */
+.history_badge{
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  line-height: 1em;
+  border-radius: 15px;
+  border: 1px solid var(--point_main);
+  padding: 20px;
+}
+.history_badge .badge{
+  color: var(--point_main);
+  font-size: 0.875em;
+  font-weight: 500;
+}
+.history_badge .period{
+  font-size: 0.975em;
+  color: var(--dark);
+  font-weight: 600;
+}
+
+/* 결제 리스트 */
+.history_body h2{
+  font-weight: 700;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--border2);
+  margin-bottom: 20px;
+}
+.history_list{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.history_list li{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.history_list .discount{
+  color: var(--point_main);
+}
+
+/* 하단 */
+.history_footer{
+  background: #f8f8f8;;
+  padding: 18px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.history_footer li{
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+.total_label{
+  font-weight: 500;
+}
+.total_price{
+  margin-left: auto;
+  font-weight: 500;
+}
+.refund_link{
+  font-size: 0.975em;
+  color: #0F0FBE;
+  text-align: right;
+  align-self: flex-end;
+  font-weight: 500;
+  cursor: pointer;
+}

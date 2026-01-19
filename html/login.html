@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="팜아카데미 - 약사를 위한 전문 교육 플랫폼">
+
+    <!-- OG -->
+    <meta property="og:title" content="팜아카데미">
+    <meta property="og:description" content="약사를 위한 전문 교육 플랫폼">
+    <meta property="og:image" content="">
+    <meta property="og:url" content="">
+    <!-- Favicon -->
+    <link rel="icon" href="https://github.githubassets.com/favicons/favicon.svg">
+
+    <!-- reset -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reseter.css/2.0.0/reseter.min.css" integrity="sha512-gCJkkUMGTe73+FMwog6gIBCVJIMXRoc21l6/IPCuzxCex/1sxvO8ctb6Zd4/WWs2UMqmtnDrAdhJht5pEY0LXg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- normalize css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Flatpickr -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <!-- tabler-icons  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tabler-icons/3.28.1/tabler-icons.min.css" integrity="sha512-UuL1Le1IzormILxFr3ki91VGuPYjsKQkRFUvSrEuwdVCvYt6a1X73cJ8sWb/1E726+rfDRexUn528XRdqrSAOw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- font-awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- swiper css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/11.0.5/swiper-bundle.min.css" />
+
+    <!-- jQurey -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- swiper js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/11.0.5/swiper-bundle.min.js" integrity="sha512-Ysw1DcK1P+uYLqprEAzNQJP+J4hTx4t/3X2nbVwszao8wD+9afLjBQYjz7Uk4ADP+Er++mJoScI42ueGtQOzEA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- Modernizr 최신 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/3.11.7/modernizr.min.js" referrerpolicy="no-referrer"></script>
+    <!-- IntersectionObserver -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=IntersectionObserver"></script>
+    <!-- picturefill -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/picturefill/3.0.3/picturefill.min.js"></script>
+    <!-- Flatpickr -->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <!-- Lodash -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js"></script>
+    <!-- imagesLoaded -->
+    <script src="https://unpkg.com/imagesloaded@5.0.0/imagesloaded.pkgd.min.js"></script>
+  
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/common.css">
+    <link rel="stylesheet" href="/css/modal.css">
+    <link rel="stylesheet" href="/css/mypage.css">
+  
+    <script defer src="/js/main.js"></script>
+    <script defer src="/js/modal.js"></script>
+    <script defer src="/js/swiper.js"></script>
+    <title>팜아카데미</title>
+</head>
+<body>
+  <header></header>
+  <main>
+    <div class="login_page page_top_padding">
+      <h2>LOGIN</h2>
+      <form class="auth_form" action="/login" method="post" autocomplete="off">
+        <div class="field">
+          <label for="user_id" class="blind">아이디</label>
+          <input class="input_active"
+            type="text"
+            id="user_id"
+            name="user_id"
+            placeholder="아이디"
+            autocomplete="username"
+            required
+          >
+        </div>
+
+        <div class="field">
+          <label for="user_pw" class="blind">비밀번호</label>
+          <input class="input_active"
+            type="password"
+            id="user_pw"
+            name="user_pw"
+            placeholder="영문, 숫자를 포함한 8~16자로 입력해 주세요."
+            autocomplete="new-password"
+            value=""
+            required
+          >
+        </div>
+
+        <label for="test" class="ID_save check_design">
+          <input type="checkbox" id="test" name="remember" class="check_point">
+          <span class="on"></span>
+          아이디 저장
+        </label>
+
+        <button type="submit" class="btn_submit">로그인</button>
+      </form>
+      <ul class="page_wrap">
+        <li><a href="">회원가입</a></li>
+        <li><a href="">아이디/비밀번호 찾기</a></li>
+      </ul>
+    </div>
+    
+  </main>
+  <!-- modal -->
+  <div class="join_modal modal_overlay active">
+    <div class="modal_box">
+      <button type="button" class="modal_close" aria-label="닫기"><img src="/images/close.svg" alt=""></button>
+
+      <div class="modal_content">
+        <p>
+          팜아카데미는 데일리팜에서 운영됩니다. <br>
+          데일리팜 통합회원으로 가입 시 팜리쿠르트, DP부동산, <br>
+          팜아카데미를 모두 이용하실 수 있습니다. <br><br>
+          확인 클릭 시 <em>데일리팜 통합 회원가입</em>으로 이동됩니다.
+        </p>
+      </div>
+
+      <div class="modal_footer">
+        <button type="button" class="btn_design modal_confirm">취소</button>
+        <a class="btn_design active_btn next_join" href="">확인</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="join_next_modal modal_overlay active">
+    <div class="modal_box">
+
+      <div class="modal_content">
+        <p>
+          팜아카데미는 데일리팜에서 운영됩니다. <br>
+          본인인증을 위해 <em>데일리팜 본인인증</em>으로 이동됩니다.
+          <br><br>
+          <b class="cl_grey">잠시만 기다려 주세요</b>
+        </p>
+      </div>
+
+    </div>
+  </div>
+
+  <footer></footer>
+</body>
+</html>
