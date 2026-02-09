@@ -1,5 +1,5 @@
 .plus_list{
-  padding-top: calc(var(--padding) * 5);
+  /* padding-bottom: calc(var(--padding)*3); */
 }
 .plus_select{
   padding-bottom: calc(var(--padding)*4);
@@ -11,7 +11,6 @@
   font-size: 1em;
   line-height: 1.6em;
   padding-bottom: calc(var(--padding)*5);
-  /* text-align: justify; */
 }
 .content .view_grid{
   display: flex;
@@ -33,7 +32,6 @@
   align-items: center;
   flex-wrap: wrap;
   gap: 15px;
-  /*padding-bottom: 1em;*/
   overflow: hidden;
 }
 .content .vod_box .adver_video{
@@ -260,10 +258,13 @@ section.content .move_tab li.active::before{
   height: 2px;
   background: var(--black);
 }
-
-.course_card{
+.stick_divider{
   position: sticky;
   top: 90px;
+}
+.course_card{
+  /* position: sticky; */
+  /* top: 90px; */
   width: 310px;
   padding: 25px;
   border-radius: 16px;
@@ -397,15 +398,9 @@ section.content .move_tab li.active::before{
 
 /* pay */ /* step1 */
 .payment_wrap{
-  padding-top: calc(var(--padding)*7);
   max-width: 480px;
   width: 100%;
   margin: auto;
-}
-.page_title{
-  font-size: 1.125em;
-  font-weight: 700;
-  padding-bottom: calc(var(--padding)*1.5);
 }
 .payment_box{
   border-radius: 10px;
