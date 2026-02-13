@@ -114,6 +114,14 @@
 .sec_class_c .d_f{
   align-items: start;
   gap: 70px;
+  padding-bottom: calc(var(--padding)*4.5);
+  border-bottom: 1px solid var(--border1);
+  margin-bottom: calc(var(--padding)*4.5);
+}
+.sec_class_c .d_f:last-child{
+  border: none;
+  padding-bottom: 0px;
+  margin-bottom: 0px;
 }
 .sec_class_c .inst_img{
   display: flex;

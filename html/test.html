@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Perfume Bottle Cap Interaction</title>
+  <style>
+    :root{
+      --bg1:#f8f4ee;
+      --bg2:#e8dfd3;
+      --glass:#fefefe;
+      --glass-stroke:#d8d1c7;
+      --liquid:#d8b178;
+      --cork1:#9a6a3a;
+      --cork2:#7f5228;
+      --shadow:rgba(42,26,10,.16);
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      min-height:100vh;
+      display:grid;
+      place-items:center;
+      background:radial-gradient(1200px 600px at 20% 20%, #fff8ef 0%, var(--bg1) 45%, var(--bg2) 100%);
+      font-family: "Segoe UI", "Noto Sans KR", sans-serif;
+    }
+    .stage{
+      width:min(92vw,560px);
+      padding:24px 16px 36px;
+      border-radius:24px;
+      background:linear-gradient(180deg, rgba(255,255,255,.65), rgba(255,255,255,.35));
+      backdrop-filter: blur(4px);
+      box-shadow: 0 18px 40px rgba(50,35,20,.12);
+      text-align:center;
+    }
+    .hint{margin:8px 0 0; color:#6f6253; font-size:14px}
+    .bottle-btn{
+      border:0;
+      background:transparent;
+      cursor:pointer;
+      padding:0;
+      width:min(100%,440px);
+      -webkit-tap-highlight-color: transparent;
+    }
+    .bottle-btn:focus-visible{
+      outline:2px solid #7b5a3a;
+      outline-offset:6px;
+      border-radius:18px;
+    }
+
+    .shadow{transition:transform .6s ease, opacity .6s ease}
+    .cap{
+      transform-origin: 220px 140px;
+      transition: transform .75s cubic-bezier(.2,.8,.2,1);
+    }
+    .cork{
+      transition: transform .75s cubic-bezier(.2,.8,.2,1), filter .45s ease;
+    }
+    .neck-glow{
+      opacity:0;
+      transition:opacity .5s ease .15s;
+    }
+    .vapor{
+      opacity:0;
+      transform: translateY(0);
+      transition: opacity .35s ease;
+    }
+
+    .open .cap{
+      transform: translate(32px,-74px) rotate(-28deg);
+    }
+    .open .cork{
+      transform: translateY(-8px);
+      filter: drop-shadow(0 6px 8px rgba(85,55,22,.24));
+    }
+    .open .shadow{transform:scale(1.05,1); opacity:.8}
+    .open .neck-glow{opacity:1}
+    .open .vapor{
+      opacity:1;
+      animation: floatUp 2.4s ease-in-out infinite;
+    }
+
+    @keyframes floatUp{
+      0%{transform:translateY(0);opacity:.0}
+      15%{opacity:.9}
+      70%{opacity:.55}
+      100%{transform:translateY(-40px);opacity:0}
+    }
+  </style>
+</head>
+<body>
+  <section class="stage">
+    <button class="bottle-btn" id="bottleToggle" aria-pressed="false" aria-label="향수병 뚜껑 열기/닫기">
+      <svg viewBox="0 0 440 480" role="img" aria-label="향수병 SVG">
+        <defs>
+          <linearGradient id="glassGrad" x1="0" x2="0" y1="0" y2="1">
+            <stop offset="0%" stop-color="#ffffff" stop-opacity=".94"/>
+            <stop offset="100%" stop-color="#f4efe8" stop-opacity=".88"/>
+          </linearGradient>
+          <linearGradient id="liquidGrad" x1="0" x2="0" y1="0" y2="1">
+            <stop offset="0%" stop-color="#e8c792"/>
+            <stop offset="100%" stop-color="#c99853"/>
+          </linearGradient>
+          <linearGradient id="corkGrad" x1="0" x2="0" y1="0" y2="1">
+            <stop offset="0%" stop-color="#aa7641"/>
+            <stop offset="100%" stop-color="#7f5228"/>
+          </linearGradient>
+        </defs>
+
+        <ellipse class="shadow" cx="220" cy="430" rx="115" ry="20" fill="var(--shadow)"/>
+
+        <!-- 🔹 병 목 (확대) -->
+        <g>
+          <rect x="160" y="124" width="120" height="56" rx="14"
+                fill="url(#glassGrad)" stroke="var(--glass-stroke)" stroke-width="2"/>
+          <ellipse class="neck-glow" cx="220" cy="152" rx="42" ry="14" fill="#ffecc8"/>
+        </g>
+
+        <!-- 🔹 병 몸통 -->
+        <g>
+          <rect x="110" y="160" width="220" height="240" rx="26"
+                fill="url(#glassGrad)" stroke="var(--glass-stroke)" stroke-width="2"/>
+          <rect x="124" y="236" width="192" height="148" rx="14"
+                fill="url(#liquidGrad)" opacity=".82"/>
+          <rect x="138" y="180" width="30" height="210" rx="12"
+                fill="#fff" opacity=".28"/>
+          <rect x="174" y="196" width="92" height="40" rx="8"
+                fill="#ffffff" opacity=".72"/>
+          <text x="220" y="221" text-anchor="middle"
+                font-size="14" fill="#786752" font-weight="600">
+            아프다 감기약
+          </text>
+        </g>
+
+        <!-- 🔹 코르크 뚜껑 (약 80% 확대) -->
+        <g class="cap">
+          <!-- 코르크 (세로 축소) -->
+          <rect class="cork"
+                x="150"
+                y="96"
+                width="140"
+                height="45"
+                rx="10"
+                fill="url(#corkGrad)" />
+
+          <!-- 상단 블랙 링 (세로 축소) -->
+          <rect x="142"
+                y="84"
+                width="156"
+                height="15"
+                rx="6"
+                fill="#2d2521"/>
+
+          <!-- 최상단 평뚜껑 -->
+          <rect x="160"
+                y="72"
+                width="120"
+                height="12"
+                rx="5"
+                fill="#4b3a31"/>
+        </g>
+
+        <!-- 🔹 향기 -->
+        <g class="vapor">
+          <circle cx="205" cy="124" r="4" fill="#f4dfba"/>
+          <circle cx="220" cy="116" r="5" fill="#f4dfba"/>
+          <circle cx="236" cy="126" r="4" fill="#f4dfba"/>
+        </g>
+      </svg>
+    </button>
+    <p class="hint">병을 클릭하면 코르크 캡이 열리고 다시 클릭하면 닫힙니다.</p>
+  </section>
+
+  <script>
+    const btn = document.getElementById('bottleToggle');
+    btn.addEventListener('click', () => {
+      const open = btn.classList.toggle('open');
+      btn.setAttribute('aria-pressed', String(open));
+    });
+  </script>
+</body>
+</html>

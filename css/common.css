@@ -320,6 +320,13 @@ input[type="radio"].radio_design:checked{
 .header .logo{
   width: 160px;
 }
+.header .logo a{
+  display: block;
+}
+.header .logo img{
+  width: 100%;
+  display: block;
+}
 .header .header_nav{
   padding: 5px 25px 5px 90px;
 }
@@ -524,6 +531,11 @@ input[type="radio"].radio_design:checked{
   color: var(--grey3);
   white-space: nowrap;
   margin-bottom: 5px;
+  transition: .25s ease;
+}
+.gnb .depth_01_title:hover{
+  color: var(--point_main);
+  font-weight: 500;
 }
 /* 2depth */
 .gnb .depth_02{
