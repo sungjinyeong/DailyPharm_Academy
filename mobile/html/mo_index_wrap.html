@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="팜아카데미 - 약사를 위한 전문 교육 플랫폼">
+
+    <!-- OG -->
+    <meta property="og:title" content="팜아카데미">
+    <meta property="og:description" content="약사를 위한 전문 교육 플랫폼">
+    <meta property="og:image" content="">
+    <meta property="og:url" content="">
+    <!-- Favicon -->
+    <link rel="icon" href="https://github.githubassets.com/favicons/favicon.svg">
+
+    <!-- reset -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reseter.css/2.0.0/reseter.min.css" integrity="sha512-gCJkkUMGTe73+FMwog6gIBCVJIMXRoc21l6/IPCuzxCex/1sxvO8ctb6Zd4/WWs2UMqmtnDrAdhJht5pEY0LXg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- normalize css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Flatpickr -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <!-- tabler-icons  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tabler-icons/3.28.1/tabler-icons.min.css" integrity="sha512-UuL1Le1IzormILxFr3ki91VGuPYjsKQkRFUvSrEuwdVCvYt6a1X73cJ8sWb/1E726+rfDRexUn528XRdqrSAOw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- font-awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- swiper css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/11.0.5/swiper-bundle.min.css" />
+
+    <!-- jQurey -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- swiper js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/11.0.5/swiper-bundle.min.js" integrity="sha512-Ysw1DcK1P+uYLqprEAzNQJP+J4hTx4t/3X2nbVwszao8wD+9afLjBQYjz7Uk4ADP+Er++mJoScI42ueGtQOzEA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- Modernizr 최신 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/3.11.7/modernizr.min.js" referrerpolicy="no-referrer"></script>
+    <!-- IntersectionObserver -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=IntersectionObserver"></script>
+    <!-- picturefill -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/picturefill/3.0.3/picturefill.min.js"></script>
+    <!-- Flatpickr -->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <!-- Lodash -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js"></script>
+    <!-- imagesLoaded -->
+    <script src="https://unpkg.com/imagesloaded@5.0.0/imagesloaded.pkgd.min.js"></script>
+  
+    <link rel="stylesheet" href="/mobile/css/reset.css">
+    <link rel="stylesheet" href="/mobile/css/common.css">
+    <link rel="stylesheet" href="/mobile/css/modal.css">
+    <link rel="stylesheet" href="/mobile/css/main.css">
+  
+    <script defer src="/mobile/js/main.js"></script>
+    <script defer src="/mobile/js/modal.js"></script>
+    <script defer src="/mobile/js/swiper.js"></script>
+    <title>팜아카데미</title>
+</head>
+<body>
+  <header class="m_header">
+    <div class="m_header_inner container_mo">
+      <h1 class="m_header_logo">
+        <a href="#" class="m_header_logo_link">
+          <img src="/images/Pharm_Academy_logo.svg" alt="">
+        </a>
+      </h1>
+
+      <div class="m_header_actions">
+        <button type="button" class="m_header_icon_btn m_header_search_btn" aria-label="검색 열기">
+          <svg width="25" height="25" fill="#000000" viewBox="0 0 256 256">
+            <path d="M229.66,218.34l-50.07-50.06a88.11,88.11,0,1,0-11.31,11.31l50.06,50.07a8,8,0,0,0,11.32-11.32ZM40,112a72,72,0,1,1,72,72A72.08,72.08,0,0,1,40,112Z"></path>
+          </svg>
+        </button>
+
+        <button type="button" class="menu_toggle_btn" aria-label="전체 메뉴 열기">
+          <span class="blind">메뉴</span>
+          <span class="menu_toggle_line"></span>
+          <span class="menu_toggle_line"></span>
+          <span class="menu_toggle_line"></span>
+          <span class="menu_toggle_line"></span>
+        </button>
+      </div>
+    </div>
+    <!-- search mode layer (ADD) -->
+    <div class="m_header_search_layer" aria-hidden="true">
+      <div class="m_header_search_inner container_mo">
+        <button type="button" class="m_header_search_close_btn" aria-label="검색 닫기">
+          <img src="/images/close.svg" alt="">
+        </button>
+
+        <label class="m_header_search_field search_box">
+          <span class="blind">검색</span>
+          <input type="search" class="m_header_search_input" placeholder="나를 위한 강의를 찾아보세요!" />
+          <button type="button" class="m_header_search_submit_btn" aria-label="검색">
+            <svg width="25" height="25" fill="#000000" viewBox="0 0 256 256">
+              <path d="M229.66,218.34l-50.07-50.06a88.11,88.11,0,1,0-11.31,11.31l50.06,50.07a8,8,0,0,0,11.32-11.32ZM40,112a72,72,0,1,1,72,72A72.08,72.08,0,0,1,40,112Z"></path>
+            </svg>
+          </button>
+        </label>
+
+        <!-- 펼쳐지는 영역 (ADD) -->
+        <div class="m_header_search_panel">
+          <div class="m_header_search_panel_inner">
+
+            <!-- 최근 검색어 -->
+            <section class="search_section">
+              <!-- search_v & null -->
+              <div class="search_v container_mo">
+                <div class="search_section_head">
+                  <h3 class="search_section_title">최근 검색어</h3>
+                  <button type="button" class="search_clear_all">전체 삭제</button>
+                </div>
+  
+                <ul class="recent_list">
+                  <li class="recent_item">
+                    <a href="" class="recent_word">약사</a>
+                    <button type="button" class="recent_del" aria-label="삭제"><img src="/images/close.svg" alt=""></button>
+                  </li>
+                  <li class="recent_item">
+                    <a href="" class="recent_word">일반약</a>
+                    <button type="button" class="recent_del" aria-label="삭제"><img src="/images/close.svg" alt=""></button>
+                  </li>
+                  <li class="recent_item">
+                    <a href="" class="recent_word">건기식</a>
+                    <button type="button" class="recent_del" aria-label="삭제"><img src="/images/close.svg" alt=""></button>
+                  </li>
+                </ul>
+              </div>
+              <div class="null" style="display: none;">
+                <p class="ar">최근 검색어가 없습니다.</p>
+              </div>
+            </section>
+
+            <!-- 추천 검색어 -->
+            <section class="search_section">
+              <div class="container_mo">
+                <div class="search_section_head">
+                  <h3 class="search_section_title">추천 검색어</h3>
+                </div>
+  
+                <div class="chip_wrap">
+                  <button type="button" class="chip">초심클래스</button>
+                  <button type="button" class="chip">OTC 상담과정</button>
+                  <button type="button" class="chip">전문의 최신처방전</button>
+                  <button type="button" class="chip">약국 상담 경영</button>
+                  <button type="button" class="chip">팜토크</button>
+                  <button type="button" class="chip">일반의약품</button>
+                  <button type="button" class="chip">약국 향량</button>
+                  <button type="button" class="chip">건강기능식품</button>
+                  <button type="button" class="chip">의료기기</button>
+                  <button type="button" class="chip">화장품/약국용품</button>
+                  <button type="button" class="chip">건기식 50선</button>
+                  <button type="button" class="chip">법률/세무/노무</button>
+                </div>
+              </div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="m_dropdown">
+      <nav class="quick_menu">
+        <ul class="quick_menu_list container_mo">
+          <li>
+            <a href="#" class="quick_menu_link">
+              <span class="quick_menu_icon"><img src="/images/ic_user.svg" alt=""></span>
+              <span class="quick_menu_text">내 강좌</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="quick_menu_link">
+              <span class="quick_menu_icon"><img src="/images/ic_point.svg" alt=""></span>
+              <span class="quick_menu_text">결제 내역</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="quick_menu_link">
+              <span class="quick_menu_icon"><img src="/images/ic_heart.svg" alt=""></span>
+              <span class="quick_menu_text">관심 강좌</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="quick_menu_link">
+              <span class="quick_menu_icon"><img src="/images/ic_talk.svg" alt=""></span>
+              <span class="quick_menu_text">1:1 문의</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="dropdown_menu">
+        <div class="drop_guide">
+          <nav class="dropdown_primary" aria-label="카테고리 메뉴">
+            <ul class="dropdown_primary_list">
+              <li class="dropdown_primary_item active">
+                <button type="button" class="dropdown_primary_btn">플러스+</button>
+              </li>
+              <li class="dropdown_primary_item">
+                <button type="button" class="dropdown_primary_btn">코스·역량</button>
+              </li>
+              <li class="dropdown_primary_item">
+                <button type="button" class="dropdown_primary_btn">학술·제품</button>
+              </li>
+              <li class="dropdown_primary_item">
+                <button type="button" class="dropdown_primary_btn">경영·관리</button>
+              </li>
+              <li class="dropdown_primary_item">
+                <button type="button" class="dropdown_primary_btn">커뮤니티</button>
+              </li>
+              <li class="dropdown_primary_item">
+                <button type="button" class="dropdown_primary_btn">마이페이지</button>
+              </li>
+            </ul>
+          </nav>
+
+          <div class="dropdown_secondary">
+            <div class="dropdown_secondary_panel active">
+              <ul class="dropdown_secondary_list">
+                <li><a href="#" class="dropdown_secondary_link">플러스 홈</a></li>
+              </ul>
+            </div>
+
+            <div class="dropdown_secondary_panel">
+              <ul class="dropdown_secondary_list">
+                <li><a href="#" class="dropdown_secondary_link">코스 전체보기</a></li>
+                <li><a href="#" class="dropdown_secondary_link">코스 보기</a></li>
+              </ul>
+            </div>
+
+            <div class="dropdown_secondary_panel">
+              <ul class="dropdown_secondary_list">
+                <li><a href="#" class="dropdown_secondary_link">학술 콘텐츠</a></li>
+              </ul>
+            </div>
+
+            <div class="dropdown_secondary_panel">
+              <ul class="dropdown_secondary_list">
+                <li><a href="#" class="dropdown_secondary_link">약국 경영</a></li>
+              </ul>
+            </div>
+
+            <div class="dropdown_secondary_panel">
+              <ul class="dropdown_secondary_list">
+                <li><a href="#" class="dropdown_secondary_link">공지사항</a></li>
+              </ul>
+            </div>
+
+            <div class="dropdown_secondary_panel">
+              <ul class="dropdown_secondary_list">
+                <li><a href="#" class="dropdown_secondary_link">내 강좌 보기</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="m_dropdown_bottom">
+        <button type="button" class="logout_btn">로그아웃</button>
+      </div>
+    </div>
+
+
+    <div class="logout_modal modal_overlay active">
+      <div class="modal_box">
+        <button type="button" class="modal_close" aria-label="닫기"><img src="/images/close.svg" alt=""></button>
+
+        <div class="modal_content margin_m">
+          <p>
+            로그아웃 하시겠습니까?
+          </p>
+        </div>
+
+        <div class="modal_footer">
+          <button type="button" class="btn_design modal_confirm">취소</button>
+          <button type="button" class="btn_design active_btn next_join">확인</button>
+        </div>
+      </div>
+    </div>
+  </header>
+  <main>  
+    <div class="index_wrap">
+      <div class="container_mo">
+        <div class="arlet_title size_m margin_m dark">건기식 50선</div>
+        <ul class="index_results card_grid">
+          <li class="design_guide">
+            <a href="">
+              <div class="overline">
+                <div class="img_box">
+                  <img src="https://picsum.photos/228/168?random=1" alt="">
+                  <div class="tip plus">Plus+</div>
+                </div>
+                <div class="s_tt">월경전증후군에 대한 모든것</div>
+              </div>
+              <div class="kind">
+                팜토크
+                <svg width="16" height="16" fill="#9B9B9B" viewBox="0 0 256 256"><path d="M181.66,133.66l-80,80a8,8,0,0,1-11.32-11.32L164.69,128,90.34,53.66a8,8,0,0,1,11.32-11.32l80,80A8,8,0,0,1,181.66,133.66Z"></path></svg>
+                <svg class="like" width="16" height="16" viewBox="0 0 256 256" aria-label="좋아요">
+                  <path d="M178,40c-20.65,0-38.73,8.88-50,23.89C116.73,48.88,98.65,40,78,40a62.07,62.07,0,0,0-62,62c0,70,103.79,126.66,108.21,129a8,8,0,0,0,7.58,0C136.21,228.66,240,172,240,102A62.07,62.07,0,0,0,178,40Z"/>
+                </svg>
+              </div>
+              <h3 class="ellipsis_2">프로바이오틱스, 생균제 사균제의 차 이를 아시나요</h3>
+              <div class="cont_name">
+                <span>문혜지 강사</span>
+                <span class="cl_point">50,000원</span>
+              </div>
+            </a>
+          </li>
+          <li class="design_guide">
+            <a href="">
+              <div class="overline">
+                <div class="img_box">
+                  <img src="https://picsum.photos/228/168?random=1" alt="">
+                  <div class="tip plus">Plus+</div>
+                </div>
+                <div class="s_tt">월경전증후군에 대한 모든것</div>
+              </div>
+              <div class="kind">
+                팜토크
+                <svg width="16" height="16" fill="#9B9B9B" viewBox="0 0 256 256"><path d="M181.66,133.66l-80,80a8,8,0,0,1-11.32-11.32L164.69,128,90.34,53.66a8,8,0,0,1,11.32-11.32l80,80A8,8,0,0,1,181.66,133.66Z"></path></svg>
+                <svg class="like" width="16" height="16" viewBox="0 0 256 256" aria-label="좋아요">
+                  <path d="M178,40c-20.65,0-38.73,8.88-50,23.89C116.73,48.88,98.65,40,78,40a62.07,62.07,0,0,0-62,62c0,70,103.79,126.66,108.21,129a8,8,0,0,0,7.58,0C136.21,228.66,240,172,240,102A62.07,62.07,0,0,0,178,40Z"/>
+                </svg>
+              </div>
+              <h3 class="ellipsis_2">프로바이오틱스, 생균제 사균제의 차 이를 아시나요</h3>
+              <div class="cont_name">
+                <span>문혜지 강사</span>
+                <span class="cl_point">50,000원</span>
+              </div>
+            </a>
+          </li>
+          <li class="design_guide">
+            <a href="">
+              <div class="overline">
+                <div class="img_box">
+                  <img src="https://picsum.photos/228/168?random=1" alt="">
+                  <div class="tip plus">Plus+</div>
+                </div>
+                <div class="s_tt">월경전증후군에 대한 모든것</div>
+              </div>
+              <div class="kind">
+                팜토크
+                <svg width="16" height="16" fill="#9B9B9B" viewBox="0 0 256 256"><path d="M181.66,133.66l-80,80a8,8,0,0,1-11.32-11.32L164.69,128,90.34,53.66a8,8,0,0,1,11.32-11.32l80,80A8,8,0,0,1,181.66,133.66Z"></path></svg>
+                <svg class="like" width="16" height="16" viewBox="0 0 256 256" aria-label="좋아요">
+                  <path d="M178,40c-20.65,0-38.73,8.88-50,23.89C116.73,48.88,98.65,40,78,40a62.07,62.07,0,0,0-62,62c0,70,103.79,126.66,108.21,129a8,8,0,0,0,7.58,0C136.21,228.66,240,172,240,102A62.07,62.07,0,0,0,178,40Z"/>
+                </svg>
+              </div>
+              <h3 class="ellipsis_2">프로바이오틱스, 생균제 사균제의 차 이를 아시나요</h3>
+              <div class="cont_name">
+                <span>문혜지 강사</span>
+                <span class="cl_point">50,000원</span>
+              </div>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+
+  </main>
+  <footer></footer>
+</body>
+</html>
+

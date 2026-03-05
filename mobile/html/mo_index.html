@@ -1,0 +1,736 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>판 뽑기</title>
+    <style>
+      :root {
+        --line: rgba(185, 205, 255, 0.24);
+        --line-weak: rgba(185, 205, 255, 0.12);
+        --text: #e7efff;
+        --muted: #9fb3d9;
+        --bg-0: #070f1f;
+        --bg-1: #0c1830;
+        --bg-2: #132748;
+        --red-0: #b72d3d;
+        --red-1: #901f2c;
+        --gray-0: #59637a;
+        --gray-1: #3a4457;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        min-width: 800px;
+        height: 100vh;
+        overflow: hidden;
+        font-family: "Pretendard", "Noto Sans KR", sans-serif;
+        color: var(--text);
+        background: radial-gradient(circle at 20% 0%, #1a2f58, transparent 42%),
+          radial-gradient(circle at 100% 100%, #111b31, transparent 45%),
+          var(--bg-0);
+      }
+
+      .page {
+        width: 100%;
+        height: 100vh;
+        padding: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .wrap {
+        position: relative;
+        width: 1100px;
+        min-width: 800px;
+        max-width: 1200px;
+        max-height: 95vh;
+        height: 100%;
+        padding: 14px;
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        background: linear-gradient(180deg, rgba(8, 14, 29, 0.95), rgba(8, 14, 29, 0.88));
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        overflow: hidden;
+      }
+
+      .resize-handle {
+        position: absolute;
+        right: -9px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 14px;
+        height: 140px;
+        border-radius: 999px;
+        border: 1px solid rgba(173, 206, 255, 0.75);
+        background: linear-gradient(180deg, rgba(188, 219, 255, 0.95), rgba(113, 158, 236, 0.95));
+        box-shadow: 0 0 0 3px rgba(7, 15, 31, 0.85), 0 8px 20px rgba(0, 0, 0, 0.35);
+        cursor: ew-resize;
+        touch-action: none;
+      }
+
+      .topbar {
+        border: 1px solid var(--line-weak);
+        border-radius: 12px;
+        background: linear-gradient(180deg, rgba(14, 28, 53, 0.9), rgba(10, 20, 40, 0.9));
+        padding: 12px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .title {
+        margin: 0;
+        font-size: 28px;
+        font-weight: 800;
+      }
+
+      .controls {
+        display: flex;
+        gap: 8px;
+      }
+
+      .btn {
+        height: 36px;
+        padding: 0 14px;
+        border-radius: 8px;
+        border: 1px solid var(--line);
+        background: #1a2947;
+        color: var(--text);
+        font-size: 14px;
+      }
+
+      .btn.btn-danger {
+        background: #bf3541;
+        border-color: #e06e77;
+      }
+
+      .layout {
+        min-height: 0;
+        flex: 1;
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 380px;
+        gap: 12px;
+      }
+
+      .left-panel,
+      .side-panel {
+        min-height: 0;
+        padding: 12px;
+        border: 1px solid var(--line-weak);
+        border-radius: 12px;
+        background: linear-gradient(180deg, var(--bg-1), var(--bg-2));
+      }
+
+      .left-panel {
+        overflow-y: auto;
+      }
+
+      .left-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 10px;
+        font-size: 14px;
+      }
+
+      .left-head strong {
+        margin-left: 6px;
+        color: #ffca69;
+      }
+
+      .rank-banner {
+        margin-bottom: 10px;
+        padding: 9px 12px;
+        border-radius: 10px;
+        border: 1px solid rgba(255, 214, 130, 0.34);
+        background: linear-gradient(180deg, rgba(104, 79, 25, 0.38), rgba(58, 46, 17, 0.38));
+        color: #ffc861;
+        font-size: 15px;
+        font-weight: 800;
+      }
+
+      .board-frame {
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        padding: 10px;
+        background: linear-gradient(180deg, rgba(8, 16, 33, 0.74), rgba(17, 28, 52, 0.74));
+      }
+
+      .col-index,
+      .board-row {
+        display: grid;
+        grid-template-columns: 34px repeat(10, minmax(0, 1fr));
+        gap: 6px;
+      }
+
+      .col-index {
+        margin-bottom: 6px;
+      }
+
+      .col-index span,
+      .row-label {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 12px;
+        font-weight: 700;
+        color: var(--muted);
+      }
+
+      .rows {
+        display: grid;
+        gap: 6px;
+      }
+
+      .cube {
+        aspect-ratio: 1 / 1;
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        border-radius: 8px;
+        background: linear-gradient(145deg, var(--red-0), var(--red-1));
+        color: #fff;
+        font-size: 12px;
+        font-weight: 800;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+      }
+
+      .cube.opened {
+        background: linear-gradient(145deg, var(--gray-0), var(--gray-1));
+        cursor: default;
+      }
+
+      .side-panel {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        overflow-y: auto;
+      }
+
+      .card {
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        background: linear-gradient(180deg, rgba(6, 18, 42, 0.9), rgba(8, 22, 50, 0.84));
+        padding: 10px;
+        min-height: 300px;
+        max-height: 300px;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .card h3 {
+        margin: 0 0 8px;
+        font-size: 22px;
+        line-height: 1;
+      }
+
+      .list {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        min-height: 0;
+        flex: 1;
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 8px;
+      }
+
+      .history-item {
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        padding: 10px;
+        min-height: 72px;
+        background: rgba(255, 255, 255, 0.03);
+        display: grid;
+        grid-template-columns: 1fr 56px 78px;
+        align-items: center;
+        gap: 8px;
+        font-size: 14px;
+        font-weight: 700;
+      }
+
+      .product-item {
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        padding: 8px;
+        background: rgba(255, 255, 255, 0.03);
+        display: grid;
+        grid-template-columns: 52px 1fr;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .product-thumb {
+        width: 52px;
+        height: 52px;
+        border-radius: 8px;
+        object-fit: cover;
+        border: 1px solid rgba(255, 255, 255, 0.22);
+      }
+
+      .product-meta {
+        display: grid;
+        gap: 4px;
+      }
+
+      .product-name {
+        font-size: 17px;
+        font-weight: 800;
+        line-height: 1.25;
+        word-break: keep-all;
+      }
+
+      .product-count {
+        font-size: 14px;
+        font-weight: 500;
+        color: var(--muted);
+      }
+
+      .left-panel,
+      .side-panel,
+      .list {
+        scrollbar-width: thin;
+        scrollbar-color: rgba(150, 186, 255, 0.78) rgba(11, 23, 48, 0.58);
+      }
+
+      .left-panel::-webkit-scrollbar,
+      .side-panel::-webkit-scrollbar,
+      .list::-webkit-scrollbar {
+        width: 9px;
+      }
+
+      .left-panel::-webkit-scrollbar-track,
+      .side-panel::-webkit-scrollbar-track,
+      .list::-webkit-scrollbar-track {
+        background: rgba(11, 23, 48, 0.58);
+        border-radius: 999px;
+      }
+
+      .left-panel::-webkit-scrollbar-thumb,
+      .side-panel::-webkit-scrollbar-thumb,
+      .list::-webkit-scrollbar-thumb {
+        background: linear-gradient(180deg, rgba(173, 206, 255, 0.92), rgba(104, 151, 232, 0.92));
+        border-radius: 999px;
+        border: 2px solid rgba(11, 23, 48, 0.55);
+      }
+
+      .reveal-modal {
+        position: fixed;
+        inset: 0;
+        display: grid;
+        place-items: center;
+        z-index: 50;
+      }
+
+      .reveal-modal[hidden] {
+        display: none;
+      }
+
+      .reveal-backdrop {
+        position: absolute;
+        inset: 0;
+        background: rgba(4, 9, 20, 0.56);
+        backdrop-filter: blur(6px);
+      }
+
+      .reveal-dialog {
+        position: relative;
+        z-index: 1;
+        width: min(94%, 440px);
+        padding: 18px;
+        border-radius: 14px;
+        border: 1px solid var(--line);
+        background: linear-gradient(180deg, rgba(14, 28, 53, 0.95), rgba(10, 20, 40, 0.95));
+      }
+
+      .reveal-close {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        width: 32px;
+        height: 32px;
+        border-radius: 999px;
+        border: 1px solid var(--line);
+        background: #142648;
+        color: #fff;
+      }
+
+      .reveal-title {
+        margin: 0 0 10px;
+        font-size: 14px;
+        font-weight: 700;
+      }
+
+      .reveal-card {
+        position: relative;
+        height: 160px;
+        border-radius: 12px;
+        overflow: hidden;
+      }
+
+      .reveal-base {
+        height: 100%;
+        border-radius: 12px;
+        border: 1px solid var(--line);
+        display: grid;
+        place-items: center;
+        background: linear-gradient(160deg, #2a3852, #1a2437);
+      }
+
+      .reveal-num {
+        font-size: 44px;
+        font-weight: 900;
+      }
+
+      .reveal-cover {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(145deg, rgba(201, 44, 58, 0.94), rgba(134, 11, 24, 0.98));
+        touch-action: none;
+        cursor: ew-resize;
+      }
+
+      .reveal-progress {
+        margin-top: 10px;
+        height: 8px;
+        border-radius: 999px;
+        overflow: hidden;
+        background: rgba(255, 255, 255, 0.1);
+      }
+
+      .reveal-bar {
+        width: 0;
+        height: 100%;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.75);
+      }
+    </style>
+  </head>
+  <body>
+    <main class="page">
+      <section class="wrap">
+        <header class="topbar">
+          <h1 class="title">판 뽑기 LIVE</h1>
+          <div class="controls">
+            <button class="btn" type="button">시작</button>
+            <button class="btn" type="button">초기화</button>
+            <button class="btn btn-danger" type="button">랜덤</button>
+          </div>
+        </header>
+
+        <div class="layout">
+          <section class="left-panel">
+            <div class="left-head">
+              <div>전체 수량<strong id="totalCount">100</strong></div>
+              <div>남은 수량<strong id="remainCount">98</strong></div>
+            </div>
+            <div class="rank-banner">남은 상위상: <span id="highRankText">2, 3, 17, 33, 44, 88, 99, LO</span></div>
+
+            <div class="board-frame">
+              <div class="col-index" aria-hidden="true">
+                <span></span>
+                <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span>
+                <span>6</span><span>7</span><span>8</span><span>9</span><span>10</span>
+              </div>
+
+              <div class="rows">
+                <!-- 반복 시작: board-row -->
+                <div class="board-row">
+                  <div class="row-label">1</div>
+                  <button class="cube" type="button">쿠지</button><button class="cube" type="button">쿠지</button><button class="cube" type="button">쿠지</button><button class="cube" type="button">쿠지</button><button class="cube" type="button">쿠지</button>
+                  <button class="cube" type="button">쿠지</button><button class="cube opened" type="button">쿠지</button><button class="cube" type="button">쿠지</button><button class="cube" type="button">쿠지</button><button class="cube" type="button">쿠지</button>
+                </div>
+                <div class="board-row">
+                  <div class="row-label">2</div>
+                  <button class="cube" type="button">쿠지</button><button class="cube" type="button">쿠지</button><button class="cube" type="button">쿠지</button><button class="cube opened" type="button">쿠지</button><button class="cube" type="button">쿠지</button>
+                  <button class="cube" type="button">쿠지</button><button class="cube" type="button">쿠지</button><button class="cube" type="button">쿠지</button><button class="cube" type="button">쿠지</button><button class="cube" type="button">쿠지</button>
+                </div>
+                <div class="board-row">
+                  <div class="row-label">3</div>
+                  <button class="cube" type="button">쿠지</button><button class="cube" type="button">쿠지</button><button class="cube opened" type="button">쿠지</button><button class="cube" type="button">쿠지</button><button class="cube" type="button">쿠지</button>
+                  <button class="cube" type="button">쿠지</button><button class="cube" type="button">쿠지</button><button class="cube" type="button">쿠지</button><button class="cube" type="button">쿠지</button><button class="cube" type="button">쿠지</button>
+                </div>
+                <div class="board-row">
+                  <div class="row-label">4</div>
+                  <button class="cube" type="button">쿠지</button><button class="cube" type="button">쿠지</button><button class="cube" type="button">쿠지</button><button class="cube" type="button">쿠지</button><button class="cube opened" type="button">쿠지</button>
+                  <button class="cube" type="button">쿠지</button><button class="cube" type="button">쿠지</button><button class="cube" type="button">쿠지</button><button class="cube" type="button">쿠지</button><button class="cube" type="button">쿠지</button>
+                </div>
+                <div class="board-row">
+                  <div class="row-label">5</div>
+                  <button class="cube" type="button">쿠지</button><button class="cube" type="button">쿠지</button><button class="cube" type="button">쿠지</button><button class="cube" type="button">쿠지</button><button class="cube" type="button">쿠지</button>
+                  <button class="cube opened" type="button">쿠지</button><button class="cube" type="button">쿠지</button><button class="cube" type="button">쿠지</button><button class="cube" type="button">쿠지</button><button class="cube" type="button">쿠지</button>
+                </div>
+                <div class="board-row">
+                  <div class="row-label">6</div>
+                  <button class="cube" type="button">쿠지</button><button class="cube" type="button">쿠지</button><button class="cube" type="button">쿠지</button><button class="cube" type="button">쿠지</button><button class="cube" type="button">쿠지</button>
+                  <button class="cube" type="button">쿠지</button><button class="cube" type="button">쿠지</button><button class="cube opened" type="button">쿠지</button><button class="cube" type="button">쿠지</button><button class="cube" type="button">쿠지</button>
+                </div>
+                <div class="board-row">
+                  <div class="row-label">7</div>
+                  <button class="cube" type="button">쿠지</button><button class="cube" type="button">쿠지</button><button class="cube" type="button">쿠지</button><button class="cube" type="button">쿠지</button><button class="cube opened" type="button">쿠지</button>
+                  <button class="cube" type="button">쿠지</button><button class="cube" type="button">쿠지</button><button class="cube" type="button">쿠지</button><button class="cube" type="button">쿠지</button><button class="cube" type="button">쿠지</button>
+                </div>
+                <div class="board-row">
+                  <div class="row-label">8</div>
+                  <button class="cube" type="button">쿠지</button><button class="cube" type="button">쿠지</button><button class="cube" type="button">쿠지</button><button class="cube opened" type="button">쿠지</button><button class="cube" type="button">쿠지</button>
+                  <button class="cube" type="button">쿠지</button><button class="cube" type="button">쿠지</button><button class="cube" type="button">쿠지</button><button class="cube" type="button">쿠지</button><button class="cube" type="button">쿠지</button>
+                </div>
+                <div class="board-row">
+                  <div class="row-label">9</div>
+                  <button class="cube" type="button">쿠지</button><button class="cube" type="button">쿠지</button><button class="cube" type="button">쿠지</button><button class="cube" type="button">쿠지</button><button class="cube" type="button">쿠지</button>
+                  <button class="cube" type="button">쿠지</button><button class="cube opened" type="button">쿠지</button><button class="cube" type="button">쿠지</button><button class="cube" type="button">쿠지</button><button class="cube" type="button">쿠지</button>
+                </div>
+                <div class="board-row">
+                  <div class="row-label">10</div>
+                  <button class="cube" type="button">쿠지</button><button class="cube" type="button">쿠지</button><button class="cube" type="button">쿠지</button><button class="cube" type="button">쿠지</button><button class="cube" type="button">쿠지</button>
+                  <button class="cube opened" type="button">쿠지</button><button class="cube" type="button">쿠지</button><button class="cube" type="button">쿠지</button><button class="cube" type="button">쿠지</button><button class="cube" type="button">쿠지</button>
+                </div>
+                <!-- 반복 끝 -->
+              </div>
+            </div>
+          </section>
+
+          <aside class="side-panel">
+            <section class="card">
+              <h3>히스토리</h3>
+              <ul class="list" id="historyList">
+                <!-- 반복 시작: history-item -->
+                <li class="history-item"><span>랜덤뽑기</span><span>37번</span><span>17:11:05</span></li>
+                <li class="history-item"><span>랜덤뽑기</span><span>20번</span><span>17:11:03</span></li>
+                <!-- 반복 끝 -->
+              </ul>
+            </section>
+
+            <section class="card">
+              <h3>당첨상품 목록</h3>
+              <ul class="list">
+                <!-- 반복 시작: product-item -->
+                <li class="product-item">
+                  <img class="product-thumb" src="https://picsum.photos/seed/prize1/120/120" alt="진격의 거인 여성형 거인" />
+                  <div class="product-meta">
+                    <div class="product-name">1. 진격의 거인 여성형 거인</div>
+                    <div class="product-count">남은 카드: 1장</div>
+                  </div>
+                </li>
+                <li class="product-item">
+                  <img class="product-thumb" src="https://picsum.photos/seed/prize2/120/120" alt="5. 3번 귀칼 병풍 텐겐" />
+                  <div class="product-meta">
+                    <div class="product-name">5. 3번 귀칼 병풍 텐겐</div>
+                    <div class="product-count">남은 카드: 1장</div>
+                  </div>
+                </li>
+                <li class="product-item">
+                  <img class="product-thumb" src="https://picsum.photos/seed/prize3/120/120" alt="6. 17번 나히아 에리 G상" />
+                  <div class="product-meta">
+                    <div class="product-name">6. 17번 나히아 에리 G상</div>
+                    <div class="product-count">남은 카드: 1장</div>
+                  </div>
+                </li>
+                <li class="product-item">
+                  <img class="product-thumb" src="https://picsum.photos/seed/prize4/120/120" alt="7. 22번 한정 굿즈 세트" />
+                  <div class="product-meta">
+                    <div class="product-name">7. 22번 한정 굿즈 세트</div>
+                    <div class="product-count">남은 카드: 3장</div>
+                  </div>
+                </li>
+                <!-- 반복 끝 -->
+              </ul>
+            </section>
+          </aside>
+        </div>
+        <button class="resize-handle" id="resizeHandle" type="button" aria-label="화면 크기 조절"></button>
+      </section>
+    </main>
+
+    <div class="reveal-modal" id="revealModal" hidden>
+      <div class="reveal-backdrop" data-close="1"></div>
+      <section class="reveal-dialog" role="dialog" aria-modal="true" aria-label="카드 열기">
+        <button class="reveal-close" id="revealClose" type="button" aria-label="닫기">&times;</button>
+        <p class="reveal-title">카드를 오른쪽 끝까지 드래그하면 오픈됩니다</p>
+        <div class="reveal-card" id="revealCard">
+          <div class="reveal-base"><span class="reveal-num" id="revealNum">1</span></div>
+          <div class="reveal-cover" id="revealCover"></div>
+        </div>
+        <div class="reveal-progress"><div class="reveal-bar" id="revealBar"></div></div>
+      </section>
+    </div>
+
+    <script>
+      (function () {
+        var cubes = Array.prototype.slice.call(document.querySelectorAll(".board-row .cube"));
+        var totalEl = document.getElementById("totalCount");
+        var remainEl = document.getElementById("remainCount");
+        var historyList = document.getElementById("historyList");
+        var rankText = document.getElementById("highRankText");
+        var modal = document.getElementById("revealModal");
+        var closeBtn = document.getElementById("revealClose");
+        var revealCard = document.getElementById("revealCard");
+        var revealCover = document.getElementById("revealCover");
+        var revealBar = document.getElementById("revealBar");
+        var revealNum = document.getElementById("revealNum");
+        var wrap = document.querySelector(".wrap");
+        var resizeHandle = document.getElementById("resizeHandle");
+        var currentId = null;
+        var progress = 0;
+
+        cubes.forEach(function (cube, i) {
+          cube.dataset.id = String(i + 1);
+        });
+
+        function getOpenedCount() {
+          return document.querySelectorAll(".board-row .cube.opened").length;
+        }
+
+        function updateRemain() {
+          totalEl.textContent = String(cubes.length);
+          remainEl.textContent = String(cubes.length - getOpenedCount());
+        }
+
+        function setProgress(v) {
+          progress = Math.max(0, Math.min(1, v));
+          var w = Math.max(1, revealCard.getBoundingClientRect().width);
+          revealCover.style.transform = "translateX(" + (progress * w).toFixed(2) + "px)";
+          revealBar.style.width = Math.round(progress * 100) + "%";
+        }
+
+        function closeModal() {
+          modal.hidden = true;
+          currentId = null;
+          setProgress(0);
+        }
+
+        function addHistory(cardId) {
+          var now = new Date();
+          var hh = String(now.getHours()).padStart(2, "0");
+          var mm = String(now.getMinutes()).padStart(2, "0");
+          var ss = String(now.getSeconds()).padStart(2, "0");
+          var li = document.createElement("li");
+          li.className = "history-item";
+          li.innerHTML = "<span>랜덤뽑기</span><span>" + cardId + "번</span><span>" + hh + ":" + mm + ":" + ss + "</span>";
+          historyList.insertBefore(li, historyList.firstChild);
+        }
+
+        function updateRankText(cardId) {
+          var arr = rankText.textContent.split(",").map(function (s) { return s.trim(); }).filter(Boolean);
+          arr = arr.filter(function (v) { return v !== String(cardId); });
+          rankText.textContent = arr.length ? arr.join(", ") : "없음";
+        }
+
+        function confirmOpen(cardId) {
+          var target = cubes[cardId - 1];
+          if (!target || target.classList.contains("opened")) return;
+          target.classList.add("opened");
+          addHistory(cardId);
+          updateRankText(cardId);
+          updateRemain();
+        }
+
+        cubes.forEach(function (cube) {
+          cube.addEventListener("click", function () {
+            if (cube.classList.contains("opened")) return;
+            currentId = Number(cube.dataset.id);
+            revealNum.textContent = String(currentId);
+            modal.hidden = false;
+            setProgress(0);
+          });
+        });
+
+        var dragging = false;
+        var pointerId = null;
+        var startX = 0;
+        var startP = 0;
+        var baseW = 1;
+
+        revealCover.addEventListener("pointerdown", function (e) {
+          if (currentId == null) return;
+          if (e.pointerType === "mouse" && e.button !== 0) return;
+          dragging = true;
+          pointerId = e.pointerId;
+          startX = e.clientX;
+          startP = progress;
+          baseW = Math.max(1, revealCard.getBoundingClientRect().width);
+          revealCover.setPointerCapture(e.pointerId);
+          e.preventDefault();
+        });
+
+        revealCover.addEventListener("pointermove", function (e) {
+          if (!dragging || e.pointerId !== pointerId) return;
+          setProgress(startP + (e.clientX - startX) / baseW);
+        });
+
+        function endDrag(e) {
+          if (!dragging || e.pointerId !== pointerId) return;
+          dragging = false;
+          pointerId = null;
+          if (progress >= 0.985) {
+            setProgress(1);
+            confirmOpen(currentId);
+            setTimeout(closeModal, 160);
+          } else {
+            setProgress(0);
+          }
+        }
+
+        revealCover.addEventListener("pointerup", endDrag);
+        revealCover.addEventListener("pointercancel", endDrag);
+
+        modal.addEventListener("click", function (e) {
+          if (e.target && e.target.getAttribute("data-close") === "1") closeModal();
+        });
+        closeBtn.addEventListener("click", closeModal);
+
+        if (wrap && resizeHandle) {
+          var resizing = false;
+          var resizePointerId = null;
+          var startClientX = 0;
+          var startWidth = 0;
+          var minW = 800;
+          var maxW = 1200;
+
+          function clampWidth(v) {
+            return Math.max(minW, Math.min(maxW, v));
+          }
+
+          resizeHandle.addEventListener("pointerdown", function (e) {
+            if (e.pointerType === "mouse" && e.button !== 0) return;
+            resizing = true;
+            resizePointerId = e.pointerId;
+            startClientX = e.clientX;
+            startWidth = wrap.getBoundingClientRect().width;
+            resizeHandle.setPointerCapture(e.pointerId);
+            e.preventDefault();
+          });
+
+          resizeHandle.addEventListener("pointermove", function (e) {
+            if (!resizing || e.pointerId !== resizePointerId) return;
+            var next = clampWidth(startWidth + (e.clientX - startClientX));
+            wrap.style.width = next + "px";
+          });
+
+          function stopResize(e) {
+            if (!resizing || e.pointerId !== resizePointerId) return;
+            resizing = false;
+            resizePointerId = null;
+          }
+
+          resizeHandle.addEventListener("pointerup", stopResize);
+          resizeHandle.addEventListener("pointercancel", stopResize);
+        }
+        updateRemain();
+      })();
+    </script>
+  </body>
+</html>
