@@ -1,0 +1,171 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>판 뽑기</title>
+    <link rel="stylesheet" href="../css/style.css" />
+  </head>
+  <body>
+    <main class="page">
+      <section class="app_shell">
+        <div class="topbar app_header">
+          <h1 class="title">판 뽑기 LIVE</h1>
+          <div class="controls">
+            <button class="btn" type="button">시작</button>
+            <button class="btn" type="button">초기화</button>
+            <button class="btn btn_danger" type="button">랜덤</button>
+          </div>
+        </div>
+
+        <section class="wrap">
+          <div class="layout">
+            <div class="left_column">
+              <div class="left_panel_top">
+                <div class="left_head">
+                  <div>전체 수량<strong class="total_count">100</strong></div>
+                  <div>남은 수량<strong class="remain_count">98</strong></div>
+                </div>
+                <div class="rank_banner">남은 상위상: <span class="high_rank_text">2, 3, 17, 33, 44, 88, 99, LO</span></div>
+              </div>
+
+              <section class="left_panel">
+                <div class="board_frame">
+                  <div class="col_index" aria-hidden="true">
+                    <span></span>
+                    <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span>
+                    <span>6</span><span>7</span><span>8</span><span>9</span><span>10</span>
+                  </div>
+
+                  <div class="rows">
+                    <!-- 반복 시작: board_row -->
+                    <div class="board_row">
+                      <div class="row_label">1</div>
+                      <button class="cube" type="button">쿠지</button><button class="cube" type="button">쿠지</button><button class="cube" type="button">쿠지</button><button class="cube" type="button">쿠지</button><button class="cube" type="button">쿠지</button>
+                      <button class="cube" type="button">쿠지</button><button class="cube opened" type="button">쿠지</button><button class="cube" type="button">쿠지</button><button class="cube" type="button">쿠지</button><button class="cube" type="button">쿠지</button>
+                    </div>
+                    <div class="board_row">
+                      <div class="row_label">2</div>
+                      <button class="cube" type="button">쿠지</button><button class="cube" type="button">쿠지</button><button class="cube" type="button">쿠지</button><button class="cube opened" type="button">쿠지</button><button class="cube" type="button">쿠지</button>
+                      <button class="cube" type="button">쿠지</button><button class="cube" type="button">쿠지</button><button class="cube" type="button">쿠지</button><button class="cube" type="button">쿠지</button><button class="cube" type="button">쿠지</button>
+                    </div>
+                    <div class="board_row">
+                      <div class="row_label">3</div>
+                      <button class="cube" type="button">쿠지</button><button class="cube" type="button">쿠지</button><button class="cube opened" type="button">쿠지</button><button class="cube" type="button">쿠지</button><button class="cube" type="button">쿠지</button>
+                      <button class="cube" type="button">쿠지</button><button class="cube" type="button">쿠지</button><button class="cube" type="button">쿠지</button><button class="cube" type="button">쿠지</button><button class="cube" type="button">쿠지</button>
+                    </div>
+                    <div class="board_row">
+                      <div class="row_label">4</div>
+                      <button class="cube" type="button">쿠지</button><button class="cube" type="button">쿠지</button><button class="cube" type="button">쿠지</button><button class="cube" type="button">쿠지</button><button class="cube opened" type="button">쿠지</button>
+                      <button class="cube" type="button">쿠지</button><button class="cube" type="button">쿠지</button><button class="cube" type="button">쿠지</button><button class="cube" type="button">쿠지</button><button class="cube" type="button">쿠지</button>
+                    </div>
+                    <div class="board_row">
+                      <div class="row_label">5</div>
+                      <button class="cube" type="button">쿠지</button><button class="cube" type="button">쿠지</button><button class="cube" type="button">쿠지</button><button class="cube" type="button">쿠지</button><button class="cube" type="button">쿠지</button>
+                      <button class="cube opened" type="button">쿠지</button><button class="cube" type="button">쿠지</button><button class="cube" type="button">쿠지</button><button class="cube" type="button">쿠지</button><button class="cube" type="button">쿠지</button>
+                    </div>
+                    <div class="board_row">
+                      <div class="row_label">6</div>
+                      <button class="cube" type="button">쿠지</button><button class="cube" type="button">쿠지</button><button class="cube" type="button">쿠지</button><button class="cube" type="button">쿠지</button><button class="cube" type="button">쿠지</button>
+                      <button class="cube" type="button">쿠지</button><button class="cube" type="button">쿠지</button><button class="cube opened" type="button">쿠지</button><button class="cube" type="button">쿠지</button><button class="cube" type="button">쿠지</button>
+                    </div>
+                    <div class="board_row">
+                      <div class="row_label">7</div>
+                      <button class="cube" type="button">쿠지</button><button class="cube" type="button">쿠지</button><button class="cube" type="button">쿠지</button><button class="cube" type="button">쿠지</button><button class="cube opened" type="button">쿠지</button>
+                      <button class="cube" type="button">쿠지</button><button class="cube" type="button">쿠지</button><button class="cube" type="button">쿠지</button><button class="cube" type="button">쿠지</button><button class="cube" type="button">쿠지</button>
+                    </div>
+                    <div class="board_row">
+                      <div class="row_label">8</div>
+                      <button class="cube" type="button">쿠지</button><button class="cube" type="button">쿠지</button><button class="cube" type="button">쿠지</button><button class="cube opened" type="button">쿠지</button><button class="cube" type="button">쿠지</button>
+                      <button class="cube" type="button">쿠지</button><button class="cube" type="button">쿠지</button><button class="cube" type="button">쿠지</button><button class="cube" type="button">쿠지</button><button class="cube" type="button">쿠지</button>
+                    </div>
+                    <div class="board_row">
+                      <div class="row_label">9</div>
+                      <button class="cube" type="button">쿠지</button><button class="cube" type="button">쿠지</button><button class="cube" type="button">쿠지</button><button class="cube" type="button">쿠지</button><button class="cube" type="button">쿠지</button>
+                      <button class="cube" type="button">쿠지</button><button class="cube opened" type="button">쿠지</button><button class="cube" type="button">쿠지</button><button class="cube" type="button">쿠지</button><button class="cube" type="button">쿠지</button>
+                    </div>
+                    <div class="board_row">
+                      <div class="row_label">10</div>
+                      <button class="cube" type="button">쿠지</button><button class="cube" type="button">쿠지</button><button class="cube" type="button">쿠지</button><button class="cube" type="button">쿠지</button><button class="cube" type="button">쿠지</button>
+                      <button class="cube opened" type="button">쿠지</button><button class="cube" type="button">쿠지</button><button class="cube" type="button">쿠지</button><button class="cube" type="button">쿠지</button><button class="cube" type="button">쿠지</button>
+                    </div>
+                    <!-- 반복 끝 -->
+                  </div>
+                </div>
+              </section>
+            </div>
+
+            <aside class="side_panel">
+              <section class="card">
+                <h3>히스토리</h3>
+                <ul class="list history_list">
+                  <!-- 반복 시작: history_item -->
+                  <li class="history_item"><span>랜덤뽑기</span><span>37번</span><span>17:11:05</span></li>
+                  <li class="history_item"><span>랜덤뽑기</span><span>20번</span><span>17:11:03</span></li>
+                  <!-- 반복 끝 -->
+                </ul>
+              </section>
+
+              <section class="card">
+                <h3>당첨상품 목록</h3>
+                <ul class="list">
+                  <!-- 반복 시작: product_item -->
+                  <li class="product_item">
+                    <img class="product_thumb" src="https://picsum.photos/seed/prize1/120/120" alt="진격의 거인 여성형 거인" />
+                    <div class="product_meta">
+                      <div class="product_name">1. 진격의 거인 여성형 거인</div>
+                    </div>
+                  </li>
+                  <li class="product_item">
+                    <img class="product_thumb" src="https://picsum.photos/seed/prize2/120/120" alt="5. 3번 귀칼 병풍 텐겐" />
+                    <div class="product_meta">
+                      <div class="product_name">5. 3번 귀칼 병풍 텐겐</div>
+                    </div>
+                  </li>
+                  <li class="product_item">
+                    <img class="product_thumb" src="https://picsum.photos/seed/prize3/120/120" alt="6. 17번 나히아 에리 G상" />
+                    <div class="product_meta">
+                      <div class="product_name">6. 17번 나히아 에리 G상</div>
+                    </div>
+                  </li>
+                  <li class="product_item">
+                    <img class="product_thumb" src="https://picsum.photos/seed/prize4/120/120" alt="7. 22번 한정 굿즈 세트" />
+                    <div class="product_meta">
+                      <div class="product_name">7. 22번 한정 굿즈 세트</div>
+                    </div>
+                  </li>
+                  <!-- 반복 끝 -->
+                </ul>
+              </section>
+            </aside>
+          </div>
+        </section>
+        <button class="resize_handle" type="button" aria-label="화면 크기 조절"></button>
+      </section>
+    </main>
+
+    <div class="card_modal reveal_modal" aria-hidden="true">
+      <div class="reveal_backdrop" data_modal_close="1"></div>
+      <div class="reveal_dialog" role="dialog" aria-modal="true" aria-label="카드 열기">
+        <button class="reveal_close" type="button" aria-label="닫기">&times;</button>
+        <p class="reveal_title">카드를 오른쪽 끝까지 드래그하면 오픈됩니다</p>
+        <div class="reveal_card">
+          <div class="reveal_base"><span class="reveal_num">1</span></div>
+          <div class="reveal_cover"></div>
+        </div>
+        <div class="reveal_progress"><div class="reveal_bar"></div></div>
+      </div>
+    </div>
+
+    <div class="card_modal win_modal" aria-hidden="true">
+      <div class="win_backdrop" data_modal_close="1"></div>
+      <div class="win_dialog" role="dialog" aria-modal="true" aria-label="당첨 안내">
+        <button class="win_close" type="button" aria-label="닫기">&times;</button>
+        <h2 class="win_title">당첨</h2>
+        <p class="win_subtitle"></p>
+      </div>
+    </div>
+
+    <script src="../js/app.js"></script>
+  </body>
+</html>

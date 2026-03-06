@@ -208,6 +208,8 @@
 
       .cube.opened {
         background: linear-gradient(145deg, var(--gray-0), var(--gray-1));
+        color: #eef2ff;
+        font-size: 13px;
         cursor: default;
       }
 
@@ -224,14 +226,14 @@
         background: linear-gradient(180deg, rgba(6, 18, 42, 0.9), rgba(8, 22, 50, 0.84));
         padding: 10px;
         min-height: 300px;
-        max-height: 300px;
+        max-height: 500px;
         display: flex;
         flex-direction: column;
       }
 
       .card h3 {
         margin: 0 0 8px;
-        font-size: 22px;
+        font-size: 18px;
         line-height: 1;
       }
 
@@ -251,31 +253,32 @@
       .history-item {
         border: 1px solid var(--line);
         border-radius: 10px;
-        padding: 10px;
-        min-height: 72px;
+        padding: 8px;
+        min-height: 40px;
         background: rgba(255, 255, 255, 0.03);
         display: grid;
-        grid-template-columns: 1fr 56px 78px;
+        grid-template-columns: 1fr 44px 66px;
         align-items: center;
-        gap: 8px;
-        font-size: 14px;
-        font-weight: 700;
+        gap: 6px;
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 0.1px;
       }
 
       .product-item {
         border: 1px solid var(--line);
         border-radius: 10px;
-        padding: 8px;
+        padding: 7px;
         background: rgba(255, 255, 255, 0.03);
         display: grid;
-        grid-template-columns: 52px 1fr;
+        grid-template-columns: 44px 1fr;
         align-items: center;
-        gap: 10px;
+        gap: 8px;
       }
 
       .product-thumb {
-        width: 52px;
-        height: 52px;
+        width: 44px;
+        height: 44px;
         border-radius: 8px;
         object-fit: cover;
         border: 1px solid rgba(255, 255, 255, 0.22);
@@ -287,16 +290,11 @@
       }
 
       .product-name {
-        font-size: 17px;
-        font-weight: 800;
-        line-height: 1.25;
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 1.35;
         word-break: keep-all;
-      }
-
-      .product-count {
-        font-size: 14px;
-        font-weight: 500;
-        color: var(--muted);
+        letter-spacing: 0.1px;
       }
 
       .left-panel,
@@ -398,9 +396,12 @@
       .reveal-cover {
         position: absolute;
         inset: 0;
-        background: linear-gradient(145deg, rgba(201, 44, 58, 0.94), rgba(134, 11, 24, 0.98));
+        background: linear-gradient(145deg, rgba(89, 99, 122, 0.96), rgba(58, 68, 87, 0.96));
+        border: 1px solid var(--line);
+        border-radius: 12px;
         touch-action: none;
         cursor: ew-resize;
+        will-change: transform;
       }
 
       .reveal-progress {
@@ -416,6 +417,66 @@
         height: 100%;
         border-radius: 999px;
         background: rgba(255, 255, 255, 0.75);
+      }
+
+      .win-modal {
+        position: fixed;
+        inset: 0;
+        display: grid;
+        place-items: center;
+        z-index: 60;
+      }
+
+      .win-modal[hidden] {
+        display: none;
+      }
+
+      .win-backdrop {
+        position: absolute;
+        inset: 0;
+        background: rgba(3, 8, 18, 0.62);
+        backdrop-filter: blur(6px);
+      }
+
+      .win-dialog {
+        position: relative;
+        z-index: 1;
+        width: min(94%, 420px);
+        border: 1px solid rgba(255, 208, 124, 0.45);
+        border-radius: 14px;
+        padding: 18px 18px 16px;
+        background: linear-gradient(180deg, rgba(47, 33, 13, 0.95), rgba(29, 20, 8, 0.95));
+        box-shadow: 0 14px 36px rgba(0, 0, 0, 0.45);
+      }
+
+      .win-close {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        width: 32px;
+        height: 32px;
+        border-radius: 999px;
+        border: 1px solid rgba(255, 214, 130, 0.36);
+        background: rgba(45, 33, 17, 0.9);
+        color: #ffe5af;
+      }
+
+      .win-title {
+        margin: 0;
+        font-size: 28px;
+        font-weight: 900;
+        line-height: 1.1;
+        color: #ffcf71;
+        letter-spacing: 0.3px;
+      }
+
+      .win-subtitle {
+        margin: 8px 0 0;
+        font-size: 15px;
+        font-weight: 700;
+        line-height: 1.4;
+        color: #ffe8bf;
+        word-break: keep-all;
       }
     </style>
   </head>
@@ -522,28 +583,24 @@
                   <img class="product-thumb" src="https://picsum.photos/seed/prize1/120/120" alt="진격의 거인 여성형 거인" />
                   <div class="product-meta">
                     <div class="product-name">1. 진격의 거인 여성형 거인</div>
-                    <div class="product-count">남은 카드: 1장</div>
                   </div>
                 </li>
                 <li class="product-item">
                   <img class="product-thumb" src="https://picsum.photos/seed/prize2/120/120" alt="5. 3번 귀칼 병풍 텐겐" />
                   <div class="product-meta">
                     <div class="product-name">5. 3번 귀칼 병풍 텐겐</div>
-                    <div class="product-count">남은 카드: 1장</div>
                   </div>
                 </li>
                 <li class="product-item">
                   <img class="product-thumb" src="https://picsum.photos/seed/prize3/120/120" alt="6. 17번 나히아 에리 G상" />
                   <div class="product-meta">
                     <div class="product-name">6. 17번 나히아 에리 G상</div>
-                    <div class="product-count">남은 카드: 1장</div>
                   </div>
                 </li>
                 <li class="product-item">
                   <img class="product-thumb" src="https://picsum.photos/seed/prize4/120/120" alt="7. 22번 한정 굿즈 세트" />
                   <div class="product-meta">
                     <div class="product-name">7. 22번 한정 굿즈 세트</div>
-                    <div class="product-count">남은 카드: 3장</div>
                   </div>
                 </li>
                 <!-- 반복 끝 -->
@@ -568,6 +625,15 @@
       </section>
     </div>
 
+    <div class="win-modal" id="winModal" hidden>
+      <div class="win-backdrop" data-win-close="1"></div>
+      <section class="win-dialog" role="dialog" aria-modal="true" aria-label="당첨 안내">
+        <button class="win-close" id="winClose" type="button" aria-label="닫기">&times;</button>
+        <h2 class="win-title">당첨</h2>
+        <p class="win-subtitle" id="winSubtitle"></p>
+      </section>
+    </div>
+
     <script>
       (function () {
         var cubes = Array.prototype.slice.call(document.querySelectorAll(".board-row .cube"));
@@ -581,13 +647,30 @@
         var revealCover = document.getElementById("revealCover");
         var revealBar = document.getElementById("revealBar");
         var revealNum = document.getElementById("revealNum");
+        var winModal = document.getElementById("winModal");
+        var winClose = document.getElementById("winClose");
+        var winSubtitle = document.getElementById("winSubtitle");
         var wrap = document.querySelector(".wrap");
         var resizeHandle = document.getElementById("resizeHandle");
         var currentId = null;
         var progress = 0;
+        var prizeMap = {};
 
         cubes.forEach(function (cube, i) {
           cube.dataset.id = String(i + 1);
+          if (cube.classList.contains("opened")) {
+            cube.textContent = String(i + 1);
+          }
+        });
+
+        Array.prototype.slice.call(document.querySelectorAll(".product-name")).forEach(function (el) {
+          var text = el.textContent.trim();
+          var noMatch = text.match(/(\d+)\s*번/);
+          var headMatch = text.match(/^\s*(\d+)\s*\./);
+          var cardNo = noMatch ? Number(noMatch[1]) : headMatch ? Number(headMatch[1]) : NaN;
+          if (Number.isFinite(cardNo) && cardNo > 0) {
+            prizeMap[cardNo] = text;
+          }
         });
 
         function getOpenedCount() {
@@ -612,6 +695,18 @@
           setProgress(0);
         }
 
+        function showWinPopup(cardId) {
+          var productTitle = prizeMap[cardId];
+          if (!productTitle) return;
+          winSubtitle.textContent = cardId + "번 - " + productTitle;
+          winModal.hidden = false;
+        }
+
+        function closeWinPopup() {
+          winModal.hidden = true;
+          winSubtitle.textContent = "";
+        }
+
         function addHistory(cardId) {
           var now = new Date();
           var hh = String(now.getHours()).padStart(2, "0");
@@ -633,9 +728,15 @@
           var target = cubes[cardId - 1];
           if (!target || target.classList.contains("opened")) return;
           target.classList.add("opened");
+          target.textContent = String(cardId);
           addHistory(cardId);
           updateRankText(cardId);
           updateRemain();
+          if (prizeMap[cardId]) {
+            setTimeout(function () {
+              showWinPopup(cardId);
+            }, 170);
+          }
         }
 
         cubes.forEach(function (cube) {
@@ -691,6 +792,10 @@
           if (e.target && e.target.getAttribute("data-close") === "1") closeModal();
         });
         closeBtn.addEventListener("click", closeModal);
+        winModal.addEventListener("click", function (e) {
+          if (e.target && e.target.getAttribute("data-win-close") === "1") closeWinPopup();
+        });
+        winClose.addEventListener("click", closeWinPopup);
 
         if (wrap && resizeHandle) {
           var resizing = false;
